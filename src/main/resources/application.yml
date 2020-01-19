@@ -1,0 +1,58 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: dcf-cordapp-api
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ssZ
+    time-zone: Asia/Bangkok
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+      enabled: true
+  liquibase:
+    enabled: false
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost;databaseName=master;
+    username: sa
+    password: <PSSS@Passw0rd>
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: false
+    health:
+      show-details: ALWAYS
+
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: ${dbUrlDCF}
+    username: ${dbUserDCF}
+    password: ${dbPasswordDCF}
+
+
+---
+spring:
+  profiles: sit
+  datasource:
+    url: ${dbUrlDCF}
+    username: ${dbUserDCF}
+    password: ${dbPasswordDCF}
+
+---
+spring:
+  profiles: prd
+  datasource:
+    url: ${dbUrlDCF}
+    username: ${dbUserDCF}
+    password: ${dbPasswordDCF}
